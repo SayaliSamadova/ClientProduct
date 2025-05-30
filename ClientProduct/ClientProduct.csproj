@@ -37,6 +37,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,17 +58,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Commands\ClientCommand\AddCommand.cs" />
+    <Compile Include="Commands\ClientCommand\DeleteCommand.cs" />
+    <Compile Include="Commands\ClientCommand\EditCommand.cs" />
+    <Compile Include="Commands\ClientCommand\OpenClientsCommand.cs" />
+    <Compile Include="Commands\ClientCommand\RejectCommand.cs" />
+    <Compile Include="Commands\ClientCommand\SaveCommand.cs" />
+    <Compile Include="Commands\OrderCommand\AddCommand.cs" />
+    <Compile Include="Commands\OrderCommand\DeleteCommand.cs" />
+    <Compile Include="Commands\OrderCommand\EditCommand.cs" />
+    <Compile Include="Commands\OrderCommand\OpenOrdersCommand.cs" />
+    <Compile Include="Commands\OrderCommand\RejectCommand.cs" />
+    <Compile Include="Commands\OrderCommand\SaveCommand.cs" />
+    <Compile Include="Commands\ProductCommand\AddCommand.cs" />
+    <Compile Include="Commands\ProductCommand\DeleteCommand.cs" />
+    <Compile Include="Commands\ProductCommand\EditCommand.cs" />
+    <Compile Include="Commands\ProductCommand\OpenProductsCommand.cs" />
+    <Compile Include="Commands\ProductCommand\RejectCommand.cs" />
+    <Compile Include="Commands\ProductCommand\SaveCommand.cs" />
+    <Compile Include="Enums\Situation.cs" />
+    <Compile Include="Mappers\ClientMapper.cs" />
+    <Compile Include="Mappers\IMapper.cs" />
+    <Compile Include="Mappers\OrderMapper.cs" />
+    <Compile Include="Mappers\ProductMapper.cs" />
+    <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\Interfaces\IModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ClientsViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IControlViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="Views\Components\ControlHeader.xaml.cs">
+      <DependentUpon>ControlHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\SearchControl.xaml.cs">
+      <DependentUpon>SearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ClientsControl.xaml.cs">
+      <DependentUpon>ClientsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\OrdersControl.xaml.cs">
+      <DependentUpon>OrdersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ProductsControl.xaml.cs">
+      <DependentUpon>ProductsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +132,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +140,50 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientProductCore\ClientProductCore.csproj">
+      <Project>{99f1be1e-68c2-4792-a4a0-2bd4f8ae87a6}</Project>
+      <Name>ClientProductCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\Components\ControlHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Components\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ClientsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\OrdersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ProductsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\basket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
